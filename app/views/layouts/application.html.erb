@@ -9,6 +9,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <ul>
+      <li><%= link_to new_user_path, new_user_path %></li>
+      <li><%= link_to users_path, users_path %></li>
+    </ul>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
