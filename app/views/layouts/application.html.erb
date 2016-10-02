@@ -1,36 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PrivateEvents</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title>Private Events</title>
+    <%= render 'layouts/rails_default' %>
+    <%= render 'layouts/shim' %>
   </head>
-
   <body>
-
-    <% if current_user.nil? %>
-      <%= form_for(:session, url: login_path) do |f| %>
-        <%= f.label :email %>
-        <%= f.email_field :email %>
-        <%= f.submit "Log in" %>
-      <% end %>
-    <% else %>
-      Logged in as: <%= link_to current_user.name, user_path(current_user) %>
-      | <%= link_to "Logout", logout_path, method: :delete %>
-    <% end %>
-    <ul>
-      <li><%= link_to new_user_path, new_user_path %></li>
-      <li><%= link_to users_path, users_path %></li>
-    </ul>
+    <%= render 'layouts/header' %>
     <div class="container">
-     <% flash.each do |type, message| %>
+      <% flash.each do |type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{type}") %>
       <% end %>
       <%= yield %>
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
-
-    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

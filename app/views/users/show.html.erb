@@ -1,10 +1,6 @@
 <h1><%= @user.name %></h1>
 
-Email: <%= @user.email %>
-
-<h2>Events</h2>
-<%= link_to "Create a new event", new_event_path %>
-<br><br>
+<h3>Events</h3>
 <% if @events.any? %>
 <ul>
   <% @events.each do |event| %>

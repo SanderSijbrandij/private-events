@@ -1,0 +1,17 @@
+<footer class="footer">
+  <small>
+    An <a href="http://www.theodinproject.com/">Odin Project</a> App
+    by <a href="http://www.github.com/sandersijbrandij">Sander Sijbrandij</a>
+  </small>
+
+    <span>
+      <small>
+        <% if logged_in? %>
+          Logged in as:
+          <%= link_to current_user.name, user_path(current_user) %>
+        <% else %>
+          Log in or <%= link_to "Create an account", new_user_path %>
+        <% end %>
+      </small>
+    </span>
+</footer>
