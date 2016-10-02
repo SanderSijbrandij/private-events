@@ -1,0 +1,18 @@
+<h1>Create a new event</h1>
+
+<%= form_for @event do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_area :description, height: 10 %>
+  <br>
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+  <br>
+  <%= f.label :happens_at %>
+  <%= f.datetime_field :happens_at %>
+  <br>  <br>
+  <%= f.submit "Create event" %>
+  Will be created by: <%= current_user.name %>
+<% end %>
