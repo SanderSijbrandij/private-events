@@ -67,8 +67,11 @@ p {
 }
 
 .form-inline {
-  margin: 7px 0 -8px 0;
+  margin: 10px 0 -11px 0;
   padding: 0px;
+  .btn-login {
+    margin-bottom: 15px;
+  }
 }
 
 .logged-in-status {
