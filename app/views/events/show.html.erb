@@ -3,4 +3,23 @@
 Where: <%= @event.location %> <br>
 When : <%= @event.happens_at %> <br><br>
 <%= @event.description %>
-
+<% if logged_in? %>
+  <h3>Attendees:</h3>
+  <ul class="event-attendees">
+  <% @event.attendees.each do |user| %>
+    <li <%= "class=creator" if user == @event.creator %>><%= user.name %></li>
+  <% end %>
+  </ul>
+  <hr>
+  <% if @event.creator == current_user %>
+    You created this event.
+  <% elsif current_user.attended_events.include?(@event) %>
+    You are attending this event. <br>
+    <%= link_to "Click here to cancel", cancel_path(@event) %>
+  <% else %>
+    You are not attending this event.<br>
+    <%= link_to "Click here to attend this event", attend_path(@event) %>
+  <% end %>
+<% else %>
+<h2>Log in to see attendance.</h2>
+<% end %>

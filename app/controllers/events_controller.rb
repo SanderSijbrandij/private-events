@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   def create
     @event = current_user.created_events.build(event_params)
     if @event.save
+      EventUser.create(event_id: @event.id, user_id: current_user.id)
       flash[:success] = "Event created!"
       redirect_to @event
     else
@@ -19,6 +20,31 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+  end
+
+  # right now, you can sign up multiple times through URL...
+  def attend
+    event = Event.find(params[:id])
+    if EventUser.create(event_id: event.id, user_id: current_user.id)
+      flash[:success] = "You are registered to attend the event!"
+    else
+      flash[:warning] = "Can't attend, somehow."
+    end
+    redirect_to event
+  end
+
+  def cancel
+    event = Event.find(params[:id])
+    # This destroys the event itself.
+    #if current_user.attended_events.where("event_id = ?",event.id).delete_all
+    if EventUser.where("event_id = ? and user_id = ?",
+                       params[:id], current_user.id).delete_all
+      flash[:sucess] = "Removed you from this event."
+      redirect_to event_path Event.find(params[:id])
+    else
+      flash[:warning] = "Something went wrong."
+      redirect_to event_path Event.find(params[:id])
+    end
   end
 
   private

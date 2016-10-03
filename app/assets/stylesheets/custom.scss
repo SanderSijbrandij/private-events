@@ -194,3 +194,19 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+/* attendees */
+
+.event-attendees {
+  list-style-type: none;
+  margin: -10px 0 0 0;
+  padding: 0;
+  li {
+    overflow: auto;
+    padding: 0;
+  }
+  .creator {
+    font-weight: bold;
+    color: $brand-danger;
+  }
+}
