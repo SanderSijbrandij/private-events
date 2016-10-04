@@ -1,7 +1,7 @@
 <h1><%= @event.name %></h1>
 <small>created by: <%= @event.creator.name %></small> <br>
 Where: <%= @event.location %> <br>
-When : <%= @event.happens_at %> <br><br>
+When : <%= format_date(@event.happens_at) %> <br><br>
 <%= @event.description %>
 <% if logged_in? %>
   <h3>Attendees:</h3>

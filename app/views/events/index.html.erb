@@ -1,11 +1,53 @@
-<h1>All Events</h1>
+<h1>Browse events</h1>
 
-<% if @events.any? %>
-<ul>
-  <% @events.each do |event| %>
-  <li><%= link_to event.name, event_path(event) %></li>
+<h3>Upcoming (<%= @future_events.size %>)</h3>
+<% if @future_events.any? %>
+<table class="table table-condensed">
+  <thead>
+    <td class="col-sm-3">Date/Time</td>
+    <td class="col-sm-3">Title</td>
+    <td class="col-sm-3">Location</td>
+    <td class="col-sm-2">Created by</td>
+    <td class="col-sm-1">Attendees</td>
+  </thead>
+  <tbody>
+  <% @future_events.each do |event| %>
+    <tr>
+      <td><%= format_date(event.happens_at) %></td>
+      <td><%= link_to event.name, event_path(event) %></td>
+      <td><%= event.location %></td>
+      <td><%= link_to event.creator.name, user_path(event.creator) %></td>
+      <td><%= event.attendees_count %></td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
+<% else %>
+No events found.
+<% end %>
+
+<h3>Past (<%= @past_events.size %>)</h3>
+<% if @past_events.any? %>
+<table class="table table-condensed">
+  <thead>
+    <td class="col-sm-3">Date/Time</td>
+    <td class="col-sm-3">Title</td>
+    <td class="col-sm-3">Location</td>
+    <td class="col-sm-2">Created by</td>
+    <td class="col-sm-1">Attendees</td>
+  </thead>
+  <tbody>
+  <% @past_events.each do |event| %>
+    <tr>
+      <td><%= format_date(event.happens_at) %></td>
+      <td><%= link_to event.name, event_path(event) %></td>
+      <td><%= event.location %></td>
+      <td><%= link_to event.creator.name, user_path(event.creator) %></td>
+      <td><%= event.attendees_count %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 <% else %>
 No events found.
 <% end %>

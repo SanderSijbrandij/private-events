@@ -1,4 +1,4 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-default bg-inverse navbar-fixed-top">
   <div class="container">
     <%= link_to "Private Events", root_path, id: "logo" %>
     <nav>
@@ -11,6 +11,8 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "List All", events_path %></li>
+              <li><%= link_to "List yours", user_path(current_user) %></li>
+              <li class="divider"></li>
               <li><%= link_to "Create New", new_event_path %></li>
             </ul>
           </li>

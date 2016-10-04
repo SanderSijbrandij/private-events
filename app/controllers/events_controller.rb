@@ -15,7 +15,9 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    #@events = Event.all.order(:happens_at)
+    @past_events = Event.all.past_events
+    @future_events = Event.all.future_events
   end
 
   def show
@@ -39,7 +41,7 @@ class EventsController < ApplicationController
     #if current_user.attended_events.where("event_id = ?",event.id).delete_all
     if EventUser.where("event_id = ? and user_id = ?",
                        params[:id], current_user.id).delete_all
-      flash[:sucess] = "Removed you from this event."
+      flash[:success] = "Removed you from this event."
       redirect_to event_path Event.find(params[:id])
     else
       flash[:warning] = "Something went wrong."

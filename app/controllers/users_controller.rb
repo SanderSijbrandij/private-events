@@ -15,7 +15,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @events = Event.where(creator_id: @user.id)
+    @created_events = @user.created_events
+    @future_events = @user.future_events
+    @past_events   = @user.past_events
   end
 
   def index

@@ -5,6 +5,18 @@ class User < ApplicationRecord
   before_save :downcase_email
   has_secure_password
 
+  def future_events
+    self.attended_events.future_events
+  end
+
+  def past_events
+    self.attended_events.past_events
+  end
+
+  def created_events
+     Event.where(creator_id: self.id)
+  end
+
   private
 
   def downcase_email
