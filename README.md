@@ -2,28 +2,6 @@
 
 This is a project for [The Odin Project](http://www.theodinproject.com/ruby-on-rails/associations/).
 
-## Getting Started
+## Demo
 
-To get started with the app, clone the repo and then install the needed gems:
-
-```
-$ bundle install --without production
-```
-
-Next, migrate the database:
-
-```
-$ rails db:migrate
-```
-
-Finally, run the test suite to verify that everything is working correctly:
-
-```
-$ rails test
-```
-
-If the test suite passes, you'll be ready to run the app in a local server:
-
-```
-$ rails server
-```
+There's an active demo up for this project at [Heroku](https://protected-garden-44060.herokuapp.com/).
